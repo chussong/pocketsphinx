@@ -56,7 +56,7 @@
 extern const char *const cmu6_lts_phone_table[];
 
 static s3cipid_t
-dict_ciphone_id(dict_t * d, const char *str)
+dict_ciphone_id(dict_t const *d, char const *str)
 {
     if (d->nocase)
         return bin_mdef_ciphone_id_nocase(d->mdef, str);
@@ -66,7 +66,7 @@ dict_ciphone_id(dict_t * d, const char *str)
 
 
 const char *
-dict_ciphone_str(dict_t * d, s3wid_t wid, int32 pos)
+dict_ciphone_str(dict_t const *d, s3wid_t wid, int32 pos)
 {
     assert(d != NULL);
     assert((wid >= 0) && (wid < d->n_word));
@@ -77,7 +77,7 @@ dict_ciphone_str(dict_t * d, s3wid_t wid, int32 pos)
 
 
 s3wid_t
-dict_add_word(dict_t * d, char const *word, s3cipid_t const * p, int32 np)
+dict_add_word(dict_t *d, char const *word, s3cipid_t const *p, int32 np)
 {
     int32 len;
     dictword_t *wordp;
@@ -146,7 +146,7 @@ dict_add_word(dict_t * d, char const *word, s3cipid_t const * p, int32 np)
 
 
 static int32
-dict_read(FILE * fp, dict_t * d)
+dict_read(FILE *fp, dict_t *d)
 {
     lineiter_t *li;
     char **wptr;
@@ -218,7 +218,7 @@ dict_read(FILE * fp, dict_t * d)
 }
 
 int
-dict_write(dict_t *dict, char const *filename, char const *format)
+dict_write(dict_t const *dict, char const *filename, char const *format)
 {
     FILE *fh;
     int i;
@@ -249,7 +249,7 @@ dict_write(dict_t *dict, char const *filename, char const *format)
 
 
 dict_t *
-dict_init(cmd_ln_t *config, bin_mdef_t * mdef)
+dict_init(cmd_ln_t const *config, bin_mdef_t *mdef)
 {
     FILE *fp, *fp2;
     int32 n;
@@ -396,7 +396,7 @@ dict_init(cmd_ln_t *config, bin_mdef_t * mdef)
 
 
 s3wid_t
-dict_wordid(dict_t *d, const char *word)
+dict_wordid(dict_t const *d, char const *word)
 {
     int32 w;
 
@@ -410,7 +410,7 @@ dict_wordid(dict_t *d, const char *word)
 
 
 int
-dict_filler_word(dict_t *d, s3wid_t w)
+dict_filler_word(dict_t const *d, s3wid_t w)
 {
     assert(d);
     assert((w >= 0) && (w < d->n_word));
@@ -424,7 +424,7 @@ dict_filler_word(dict_t *d, s3wid_t w)
 }
 
 int
-dict_real_word(dict_t *d, s3wid_t w)
+dict_real_word(dict_t const *d, s3wid_t w)
 {
     assert(d);
     assert((w >= 0) && (w < d->n_word));
@@ -465,7 +465,7 @@ dict_retain(dict_t *d)
 }
 
 int
-dict_free(dict_t * d)
+dict_free(dict_t *d)
 {
     int i;
     dictword_t *word;
@@ -496,7 +496,7 @@ dict_free(dict_t * d)
 }
 
 void
-dict_report(dict_t * d)
+dict_report(dict_t const *d)
 {
     E_INFO_NOFN("Initialization of dict_t, report:\n");
     E_INFO_NOFN("Max word: %d\n", d->max_words);

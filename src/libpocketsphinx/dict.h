@@ -103,24 +103,24 @@ typedef struct dict_s {
  *
  * Return ptr to dict_t if successful, NULL otherwise.
  */
-dict_t *dict_init(cmd_ln_t *config, /**< Configuration (-dict, -fdict, -dictcase) or NULL */
+dict_t *dict_init(cmd_ln_t const *config, /**< Configuration (-dict, -fdict, -dictcase) or NULL */
                   bin_mdef_t *mdef  /**< For looking up CI phone IDs (or NULL) */
     );
 
 /**
  * Write dictionary to a file.
  */
-int dict_write(dict_t *dict, char const *filename, char const *format);
+int dict_write(dict_t const *dict, char const *filename, char const *format);
 
 /** Return word id for given word string if present.  Otherwise return BAD_S3WID */
 POCKETSPHINX_EXPORT
-s3wid_t dict_wordid(dict_t *d, const char *word);
+s3wid_t dict_wordid(dict_t const *d, char const *word);
 
 /**
  * Return 1 if w is a filler word, 0 if not.  A filler word is one that was read in from the
  * filler dictionary; however, sentence START and FINISH words are not filler words.
  */
-int dict_filler_word(dict_t *d,  /**< The dictionary structure */
+int dict_filler_word(dict_t const *d,  /**< The dictionary structure */
                      s3wid_t w     /**< The word ID */
     );
 
@@ -128,7 +128,7 @@ int dict_filler_word(dict_t *d,  /**< The dictionary structure */
  * Test if w is a "real" word, i.e. neither a filler word nor START/FINISH.
  */
 POCKETSPHINX_EXPORT
-int dict_real_word(dict_t *d,  /**< The dictionary structure */
+int dict_real_word(dict_t const *d,  /**< The dictionary structure */
                    s3wid_t w     /**< The word ID */
     );
 
@@ -145,7 +145,7 @@ s3wid_t dict_add_word(dict_t *d,          /**< The dictionary structure. */
 /**
  * Return value: CI phone string for the given word, phone position.
  */
-const char *dict_ciphone_str(dict_t *d,	/**< In: Dictionary to look up */
+const char *dict_ciphone_str(dict_t const *d,	/**< In: Dictionary to look up */
                              s3wid_t wid,	/**< In: Component word being looked up */
                              int32 pos   	/**< In: Pronunciation phone position */
     );
@@ -203,7 +203,7 @@ dict_t *dict_retain(dict_t *d);
 int dict_free(dict_t *d);
 
 /** Report a dictionary structure */
-void dict_report(dict_t *d /**< A dictionary structure */
+void dict_report(dict_t const *d /**< A dictionary structure */
     );
 
 #ifdef __cplusplus
