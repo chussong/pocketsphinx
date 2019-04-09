@@ -63,7 +63,7 @@
 #include "bin_mdef.h"
 
 bin_mdef_t *
-bin_mdef_read_text(cmd_ln_t *config, const char *filename)
+bin_mdef_read_text(cmd_ln_t const *config, const char *filename)
 {
     bin_mdef_t *bmdef;
     mdef_t *mdef;
@@ -320,7 +320,7 @@ static const char format_desc[] =
     "END FILE FORMAT DESCRIPTION\n";
 
 bin_mdef_t *
-bin_mdef_read(cmd_ln_t *config, const char *filename)
+bin_mdef_read(cmd_ln_t const *config, const char *filename)
 {
     bin_mdef_t *m;
     FILE *fh;
@@ -519,7 +519,7 @@ bin_mdef_read(cmd_ln_t *config, const char *filename)
 }
 
 int
-bin_mdef_write(bin_mdef_t * m, const char *filename)
+bin_mdef_write(bin_mdef_t const *m, const char *filename)
 {
     FILE *fh;
     int32 val, i;
@@ -603,7 +603,7 @@ bin_mdef_write(bin_mdef_t * m, const char *filename)
 }
 
 int
-bin_mdef_write_text(bin_mdef_t * m, const char *filename)
+bin_mdef_write_text(bin_mdef_t const *m, const char *filename)
 {
     FILE *fh;
     int p, i, n_total_state;
@@ -688,7 +688,7 @@ bin_mdef_write_text(bin_mdef_t * m, const char *filename)
 }
 
 int
-bin_mdef_ciphone_id(bin_mdef_t * m, const char *ciphone)
+bin_mdef_ciphone_id(bin_mdef_t const *m, const char *ciphone)
 {
     int low, mid, high;
 
@@ -711,7 +711,7 @@ bin_mdef_ciphone_id(bin_mdef_t * m, const char *ciphone)
 }
 
 int
-bin_mdef_ciphone_id_nocase(bin_mdef_t * m, const char *ciphone)
+bin_mdef_ciphone_id_nocase(bin_mdef_t const *m, const char *ciphone)
 {
     int low, mid, high;
 
@@ -734,7 +734,7 @@ bin_mdef_ciphone_id_nocase(bin_mdef_t * m, const char *ciphone)
 }
 
 const char *
-bin_mdef_ciphone_str(bin_mdef_t * m, int32 ci)
+bin_mdef_ciphone_str(bin_mdef_t const *m, int32 ci)
 {
     assert(m != NULL);
     assert(ci < m->n_ciphone);
@@ -742,7 +742,7 @@ bin_mdef_ciphone_str(bin_mdef_t * m, int32 ci)
 }
 
 int
-bin_mdef_phone_id(bin_mdef_t * m, int32 ci, int32 lc, int32 rc, int32 wpos)
+bin_mdef_phone_id(bin_mdef_t const *m, int32 ci, int32 lc, int32 rc, int32 wpos)
 {
     cd_tree_t *cd_tree;
     int level, max;
@@ -811,7 +811,7 @@ bin_mdef_phone_id(bin_mdef_t * m, int32 ci, int32 lc, int32 rc, int32 wpos)
 }
 
 int
-bin_mdef_phone_id_nearest(bin_mdef_t * m, int32 b, int32 l, int32 r, int32 pos)
+bin_mdef_phone_id_nearest(bin_mdef_t const *m, int32 b, int32 l, int32 r, int32 pos)
 {
     int p, tmppos;
 
@@ -865,7 +865,7 @@ bin_mdef_phone_id_nearest(bin_mdef_t * m, int32 b, int32 l, int32 r, int32 pos)
 }
 
 int
-bin_mdef_phone_str(bin_mdef_t * m, int pid, char *buf)
+bin_mdef_phone_str(bin_mdef_t const *m, int pid, char *buf)
 {
     char *wpos_name;
 
