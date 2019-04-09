@@ -45,9 +45,9 @@
  * @file dict2pid.c - dictionary word to senone sequence mappings
  */
 
-void
-compress_table(s3ssid_t * uncomp_tab, s3ssid_t * com_tab,
-               s3cipid_t * ci_map, int32 n_ci)
+static void
+compress_table(s3ssid_t const *uncomp_tab, s3ssid_t *com_tab,
+               s3cipid_t *ci_map, int32 n_ci)
 {
     int32 found;
     int32 r;
@@ -78,7 +78,7 @@ compress_table(s3ssid_t * uncomp_tab, s3ssid_t * com_tab,
 
 
 static void
-compress_right_context_tree(dict2pid_t * d2p,
+compress_right_context_tree(dict2pid_t *d2p,
                             s3ssid_t ***rdiph_rc)
 {
     int32 n_ci;
@@ -135,7 +135,7 @@ compress_right_context_tree(dict2pid_t * d2p,
 }
 
 static void
-compress_left_right_context_tree(dict2pid_t * d2p)
+compress_left_right_context_tree(dict2pid_t *d2p)
 {
     int32 n_ci;
     int32 b, l, r;
@@ -201,7 +201,7 @@ compress_left_right_context_tree(dict2pid_t * d2p)
    because the compressed map has not been checked. 
 */
 int32
-get_rc_nssid(dict2pid_t * d2p, s3wid_t w)
+get_rc_nssid(dict2pid_t const *d2p, s3wid_t w)
 {
     int32 pronlen;
     s3cipid_t b, lc;
@@ -226,7 +226,7 @@ get_rc_nssid(dict2pid_t * d2p, s3wid_t w)
 }
 
 s3cipid_t *
-dict2pid_get_rcmap(dict2pid_t * d2p, s3wid_t w)
+dict2pid_get_rcmap(dict2pid_t const *d2p, s3wid_t w)
 {
     int32 pronlen;
     s3cipid_t b, lc;
@@ -250,7 +250,7 @@ dict2pid_get_rcmap(dict2pid_t * d2p, s3wid_t w)
 }
 
 static void
-free_compress_map(xwdssid_t ** tree, int32 n_ci)
+free_compress_map(xwdssid_t **tree, int32 n_ci)
 {
     int32 b, l;
     for (b = 0; b < n_ci; b++) {
@@ -364,7 +364,7 @@ dict2pid_add_word(dict2pid_t *d2p,
 }
 
 s3ssid_t
-dict2pid_internal(dict2pid_t *d2p,
+dict2pid_internal(dict2pid_t const *d2p,
                   int32 wid,
                   int pos)
 {
@@ -385,7 +385,7 @@ dict2pid_internal(dict2pid_t *d2p,
 }
 
 dict2pid_t *
-dict2pid_build(bin_mdef_t * mdef, dict_t * dict)
+dict2pid_build(bin_mdef_t *mdef, dict_t *dict)
 {
     dict2pid_t *dict2pid;
     s3ssid_t ***rdiph_rc;
@@ -504,7 +504,7 @@ dict2pid_retain(dict2pid_t *d2p)
 }
 
 int
-dict2pid_free(dict2pid_t * d2p)
+dict2pid_free(dict2pid_t *d2p)
 {
     if (d2p == NULL)
         return 0;
@@ -530,12 +530,12 @@ dict2pid_free(dict2pid_t * d2p)
 }
 
 void
-dict2pid_report(dict2pid_t * d2p)
+dict2pid_report(dict2pid_t const *d2p)
 {
 }
 
 void
-dict2pid_dump(FILE * fp, dict2pid_t * d2p)
+dict2pid_dump(FILE *fp, dict2pid_t const *d2p)
 {
     int32 w, p, pronlen;
     int32 i, j, b, l, r;

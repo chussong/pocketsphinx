@@ -140,7 +140,7 @@ int dict2pid_free(dict2pid_t *d2p /**< In: the d2p */
 /**
  * Return the senone sequence ID for the given word position.
  */
-s3ssid_t dict2pid_internal(dict2pid_t *d2p,
+s3ssid_t dict2pid_internal(dict2pid_t const *d2p,
                            int32 wid,
                            int pos);
 
@@ -154,24 +154,24 @@ int dict2pid_add_word(dict2pid_t *d2p,
  * For debugging
  */
 void dict2pid_dump(FILE *fp,        /**< In: a file pointer */
-                   dict2pid_t *d2p /**< In: a dict2pid_t structure */
+                   dict2pid_t const *d2p /**< In: a dict2pid_t structure */
     );
 
 /** Report a dict2pid data structure */
-void dict2pid_report(dict2pid_t *d2p /**< In: a dict2pid_t structure */
+void dict2pid_report(dict2pid_t const *d2p /**< In: a dict2pid_t structure */
     );
 
 /**
  * Get number of rc 
  */
-int32 get_rc_nssid(dict2pid_t *d2p,  /**< In: a dict2pid */
+int32 get_rc_nssid(dict2pid_t const *d2p,  /**< In: a dict2pid */
 		   s3wid_t w         /**< In: a wid */
     );
 
 /**
  * Get RC map 
  */
-s3cipid_t* dict2pid_get_rcmap(dict2pid_t *d2p,  /**< In: a dict2pid */
+s3cipid_t* dict2pid_get_rcmap(dict2pid_t const *d2p,  /**< In: a dict2pid */
 			      s3wid_t w        /**< In: a wid */
     );
 
